@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <unistd.h>
 #include <fcntl.h>
@@ -136,7 +137,7 @@ int main(int argc, char **argv) {
 	}
 	cout << "Ok." << endl;
 	
-	cout << "Halt, resettingand reconfigure PRU interrupts... " << flush;
+	cout << "Halting, resetting and reconfiguring PRU interrupts... " << flush;
 	pruHalt(pru,0);
 	pruHalt(pru,1);
 	pruWaitForHalt(pru,0);
@@ -158,6 +159,8 @@ int main(int argc, char **argv) {
 	pruWaitForHalt(pru,0);
 	cout << "Done." << endl;
 	
+	ofstream out("DRAMS.img", ios::out | ios::trunc | ios::binary);
+	out.write((char*)&pru->DRAMS, sizeof(pru->DRAMS));
 	
 #endif
 	

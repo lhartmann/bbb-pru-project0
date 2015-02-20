@@ -1,10 +1,6 @@
 //###########################################################################
 
-#include <BBB/pwmss_structs.h>
-#include <BBB/pwmss_epwm_structs.h>
-#include <BBB/pwmss_ecap_structs.h>  
-#include <BBB/pwmss_eqep_structs.h>  
-
+#include <PWMSS.h>
 //---------------------------------------------------------------------------
 // Define Global Peripheral Variables:
 //

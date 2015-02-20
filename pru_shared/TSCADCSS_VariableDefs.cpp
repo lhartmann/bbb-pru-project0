@@ -1,5 +1,5 @@
 //----------------------------------------
-#include <BBB/tscadcss_structs.h>
+#include <TSCADCSS.h>
 //----------------------------------------
 
 #ifdef __cplusplus
