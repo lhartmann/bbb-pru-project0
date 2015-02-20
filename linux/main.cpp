@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/mman.h>
+#include <pru.h>
 #include <BBB/all_structs.h>
 
 using namespace std;
@@ -18,7 +19,8 @@ int main(int argc, char **argv) {
 	if (test_pwmss_epwm_offsets()) { return 1; }
 	cout<<"Ok"<<endl;
 #endif
-	
+
+#if 0 // EPWM, ECAP, EQEP and ADC uio access test
 	cout<<"Requesting raw memory access... "<<flush;
 	int memfd = open("/dev/mem", O_RDWR);
 	if (memfd == -1) return 1;
@@ -113,6 +115,50 @@ int main(int argc, char **argv) {
 	for (int i=0; i<1000; ++i) {
 		cout << hex << pwm0ss_epwm->TBCNT << endl;
 	}
-	
+
 	cout << "All maps ok." << endl;
+#endif
+
+#if 1 // Prutest
+	cout << "Requesting PRU memory access... " << flush;
+	int prufd = open("/dev/uio1", O_RDWR);
+	if (prufd == -1) {
+		cout << "Failed." << endl;
+		return 1;
+	}
+	cout << "Ok." << endl;
+
+	cout << "Requesting PRU memory access... " << flush;
+	prumem_t *pru = pruMapRegisters(prufd);
+	if (pru == MAP_FAILED) {
+		cout << "Failed." << endl;
+		return 1;
+	}
+	cout << "Ok." << endl;
+	
+	cout << "Halt, resettingand reconfigure PRU interrupts... " << flush;
+	pruHalt(pru,0);
+	pruHalt(pru,1);
+	pruWaitForHalt(pru,0);
+	pruWaitForHalt(pru,1);
+	pruReset(pru,0);
+	pruReset(pru,1);
+	pruInterruptConfig(pru);
+	cout << "Ok." << endl;
+
+	cout << "Loading PRU programs... " << flush;
+	if (pruLoadProgram(pru, "pru0_text.bin", "pru0_data.bin", "pru1_text.bin", "pru1_data.bin", "pru_data.bin")) {
+		cout << "Failed." << endl;
+		return 1;
+	}
+	cout << "Ok." << endl;
+	
+	cout << "Running PRU0... " << flush;
+	pruRun(pru, 0);
+	pruWaitForHalt(pru,0);
+	cout << "Done." << endl;
+	
+	
+#endif
+	
 }

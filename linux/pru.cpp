@@ -229,6 +229,46 @@ bool pruLoadProgram(prumem_t *pru, int n, const char *fname) {
 	return true;
 }
 
+bool pruLoadProgram(prumem_t *pru, const char *code0, const char *data0, const char *code1, const char *data1, const char *datashare) {
+	// Read PRU0 program
+	if (code0) {
+		ifstream img(code0, ios::in|ios::binary);
+		if (!img) return true;
+		img.read((char*)&pru->IRAM0, sizeof(pru->IRAM0));
+	}
+	
+	// Read PRU0 data
+	if (data0) {
+		ifstream img(data0, ios::in|ios::binary);
+		if (!img) return true;
+		img.read((char*)&pru->DRAM0, sizeof(pru->DRAM0));
+	}
+	
+	// Read PRU1 program
+	if (code1) {
+		ifstream img(code1, ios::in|ios::binary);
+		if (!img) return true;
+		img.read((char*)&pru->IRAM1, sizeof(pru->IRAM1));
+	}
+	
+	// Read PRU1 data
+	if (data1) {
+		ifstream img(data1, ios::in|ios::binary);
+		if (!img) return true;
+		img.read((char*)&pru->DRAM1, sizeof(pru->DRAM1));
+	}
+	
+	// Read shared data
+	if (datashare) {
+		ifstream img(datashare, ios::in|ios::binary);
+		if (!img) return true;
+		img.read((char*)&pru->DRAMS, sizeof(pru->DRAMS));
+	}
+	
+	// All is well
+	return false;
+}
+
 void pruInterruptConfig(prumem_t *pru) {
 	// Interrupts:
 	// System to channel mapping:
