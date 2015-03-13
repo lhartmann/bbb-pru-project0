@@ -137,13 +137,31 @@ int main(int argc, char **argv) {
 	}
 	cout << "Ok." << endl;
 	
-	cout << "Halting, resetting and reconfiguring PRU interrupts... " << flush;
+	cout << "Halting PRUs... " << flush;
 	pruHalt(pru,0);
 	pruHalt(pru,1);
-	pruWaitForHalt(pru,0);
-	pruWaitForHalt(pru,1);
-	pruReset(pru,0);
-	pruReset(pru,1);
+	if (!pruWaitForHalt(pru,0)) {
+		cout << " Failed halting PRU0" << endl;
+		return 1;
+	}
+	if (!pruWaitForHalt(pru,1)) {
+		cout << " Failed halting PRU0" << endl;
+		return 1;
+	}
+	cout << "Ok." << endl;
+	
+	cout << "Resetting PRUs... " << flush;
+	if (!pruReset(pru,0)) {
+		cout << " Failed resetting PRU0" << endl;
+		return 1;
+	}
+	if (!pruReset(pru,1)) {
+		cout << " Failed resetting PRU0" << endl;
+		return 1;
+	}
+	cout << "Ok." << endl;
+	
+	cout << "Reconfiguring PRU interrupts... " << flush;
 	pruInterruptConfig(pru);
 	cout << "Ok." << endl;
 

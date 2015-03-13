@@ -21,6 +21,9 @@ all: pre $(TARGET)
 
 pre:
 	echo "Making $(TARGET)..."
+ifneq ($(shell uname -m), armv7l)
+	echo "  WARNING: $(TARGET) should be compiled on the BBB."
+endif
 
 $(TARGET): $(OBJECTS)
 	echo "  Linking $(TARGET)..."

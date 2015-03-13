@@ -5,7 +5,7 @@
 #include "prumem.h"
 
 extern prumem_t *pruMapRegisters(int fd);
-extern void pruReset(prumem_t *pru, int n);
+extern bool pruReset(prumem_t *pru, int n);
 extern void pruRun(prumem_t *pru, int n);
 extern void pruStep(prumem_t *pru, int n);
 extern bool pruIsHalted(prumem_t *pru, int n, uint32_t timeout_ms=1000);

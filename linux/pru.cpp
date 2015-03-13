@@ -17,7 +17,7 @@ prumem_t* pruMapRegisters(int fd) {
 	);
 }
 
-void pruReset(prumem_t *pru, int n) {
+bool pruReset(prumem_t *pru, int n) {
 	TAG("reset");
 	
 	// Resturn to reset condition.
@@ -32,19 +32,21 @@ void pruReset(prumem_t *pru, int n) {
 		break;
 		
 	default:
-		return;
+		return false;
 	}
 	
 	// Halt PRU
 	ctl->CONTROL.bit.ENABLE = 0;
 	
 	// Wait for halt
-	while (ctl->CONTROL.bit.RUNSTATE);
+	if (pruWaitForHalt(pru, n)) return false;
 	
 	// Reset
 	ctl->CONTROL.bit.PCOUNTER_RST_VAL = 0;
 	ctl->CONTROL.bit.SOFT_RST_N = 0;
 	ctl->CONTROL.bit.ENABLE = 0;
+	
+	return true;
 }
 
 void pruRun(prumem_t *pru, int n) {
@@ -275,7 +277,7 @@ void pruInterruptConfig(prumem_t *pru) {
 	pru->INTC.CMR13.bit.CH_MAP_53 = 0; // Interrupt 53 to channel 0 // gen_intr_pend, ADC
 	pru->INTC.CMR11.bit.CH_MAP_46 = 0; // Interrupt 46 to channel 0 // ePWM1
 	pru->INTC.CMR10.bit.CH_MAP_43 = 0; // Interrupt 43 to channel 0 // ePWM0
-	pru->INTC.CMR9.bit.CH_MAP_37 = 0; // Interrupt 37 to channel 0 // ePWM2
+	pru->INTC.CMR9.bit.CH_MAP_37  = 0; // Interrupt 37 to channel 0 // ePWM2
 	pru->INTC.CMR4.bit.CH_MAP_16  = 2;  // R31 Vector 0 to channel 2 // EVTOUT0
 	pru->INTC.CMR4.bit.CH_MAP_17  = 3;  // R31 Vector 1 to channel 3 // EVTOUT1
 	pru->INTC.CMR4.bit.CH_MAP_18  = 4;  // R31 Vector 2 to channel 4 // EVTOUT2

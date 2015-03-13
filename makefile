@@ -4,12 +4,18 @@
 .SILENT:
 
 all:
-	${MAKE} -C build/obj-linux all
-	${MAKE} -C build/obj-pru0 all
-	${MAKE} -C build/obj-pru1 all
-	echo "Compilation completed. Binaries are in the build directory."
+	${MAKE} -C build all
 
 clean:
-	${MAKE} -C build/obj-linux clean
-	${MAKE} -C build/obj-pru0  clean
-	${MAKE} -C build/obj-pru1  clean
+	${MAKE} -C build clean
+
+loadslots:
+	${MAKE} -C build loadslots
+
+unloadslots:
+	${MAKE} -C build unloadslots
+	
+run:
+	${MAKE} -C build run
+
+
