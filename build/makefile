@@ -13,6 +13,7 @@ clean:
 	${MAKE} -C obj-linux clean
 	${MAKE} -C obj-pru0  clean
 	${MAKE} -C obj-pru1  clean
+	rm -f DRAMS.img
 
 loadslots:
 	echo 'BB-BONE-PRU-01' | sudo tee /sys/devices/bone_capemgr.9/slots > /dev/null

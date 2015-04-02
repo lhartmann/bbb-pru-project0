@@ -1,0 +1,95 @@
+#! /bin/bash
+
+# Make sure this is run as root
+if [ "$UID" -ne 0 ]; then
+	sudo -- "$(which "$0")" "$@"
+	exit $?
+fi
+
+# Cape manager control
+CAPEMGR="/sys/bus/platform/devices/bone_capemgr.9"
+FWDIR="/lib/firmware"
+
+dt_find() {
+	local F="${1%=*}"
+	local C="${1#*=}"
+	for i in $CAPEMGR/slot-*; do
+		I="${i#$CAPEMGR/slot-}"
+		P="$(cat "$i/$F")"
+		if [ "$P" == "$C" ]; then
+			echo "$I"
+			return 0
+		fi
+	done
+	return 1
+}
+
+dt_load() {
+	local PN=$(sed -rn 's/.*part-number[ \t]*=[ \t]*"(.+)";.*/\1/p' < "$1")
+	local VER=$(sed -rn 's/.*version[ \t]*=[ \t]*"(.+)";.*/\1/p' < "$1")
+
+	dtc -@ -I dts -O dtb "$1" > "$FWDIR/$PN-$VER.dtbo"
+	echo "$PN" > $CAPEMGR/slots \
+	&& echo "Loaded $PN onto slot $(dt_find "part-number=$PN")." \
+	|| echo "Failed to load $PN."
+}
+
+dt_remove() {
+	local PN=$(sed -rn 's/.*part-number[ \t]*=[ \t]*"(.+)";.*/\1/p' < "$1")
+	local VER=$(sed -rn 's/.*version[ \t]*=[ \t]*"(.+)";.*/\1/p' < "$1")
+	local ID="$(dt_find "part-number=$PN")"
+	if [ -z "$ID" ]; then
+		echo "Echo $PN is not loaded."
+		return 1
+	fi
+	
+	if echo "-$ID" > "$CAPEMGR/slots"; then
+		echo "Removed $PN from slot $ID."
+		rm -f "$FWDIR/$PN-$VER.dtbo"
+	else
+		echo "Failed to remove $PN from slot $ID."
+	fi
+	return 0
+}
+
+dt_list() {
+	cat "$CAPEMGR/slots"
+}
+
+case "$1" in
+	"--load"|"-l")
+		dt_load "$2"
+		;;
+
+	"--remove"|"-r")
+		dt_remove "$2"
+		;;
+
+	"--find"|"-f")
+		dt_find "$2"
+		;;
+	
+	"--list"|"-l")
+		dt_list
+		;;
+		
+	*)
+		echo "Beaglebone Black devicetree overlay management helper script. (c) 2015 Lucas Hartmann."
+		echo "Usage:"
+		echo "  slot --load file.dts"
+		echo "  slot --l file.dts"
+		echo "         Compile, install and load a devicetree overlay from source."
+		echo ""
+		echo "  slot --remove file.dts"
+		echo "  slot -r file.dts"
+		echo "         Locate and remove a devicetree overlay matching the provided source file."
+		echo ""
+		echo "  slot --find file.dts"
+		echo "  slot -f file.dts"
+		echo "         Locate a devicetree overlay matching the provided source file, and then print it's slot number."
+		echo ""
+		echo "  slot --list"
+		echo "  slot -l"
+		echo "         Print devicetree overlay information."
+		;;
+esac
