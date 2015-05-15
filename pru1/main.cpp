@@ -1,4 +1,4 @@
-//#include <pru.h>
+#include <pru.h>
 
 void main() {
 }

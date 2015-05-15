@@ -1,0 +1,102 @@
+#! /bin/bash
+STATEFILE="$HOME/.state/last_seen_beaglebone"
+REMOTELOGIN="ubuntu@192.168.7.2"
+REMOTEMOUNT="/home/ubuntu"
+LOCALMOUNT="$HOME/BBB"
+LOCALBACKUP="$HOME/Documentos/temp/BBB/"
+HORACERTAURL='http://www.horacerta.com.br/index.php?city=recife'
+
+for i in /sys/class/net/*; do
+	D=${i#/sys/class/net/}
+	
+	if ifconfig $D | grep -q 192.168.7.1; then
+		DEVICE="$i"
+		break
+	fi
+done
+
+if [ -z "$DEVICE" ]; then
+	echo "Board not ready."
+	exit 1
+fi
+
+ADDRESS=$(cat $DEVICE/address)
+OLDADDR=$(cat $STATEFILE)
+
+if [ "$ADDRESS" != "$OLDADDR" ]; then
+	ssh-keygen -f ~/.ssh/known_hosts -R 192.168.7.2 2>&- >&-
+	mkdir -p "$(dirname "$STATEFILE")"
+	echo "$ADDRESS" > $STATEFILE
+fi
+
+printargs() {
+	for i in "$@"; do
+		echo "Args:"
+		echo "  \"$i\""
+	done
+}
+
+case "$1" in
+'-m'|"--mount")
+	mkdir -p "$LOCALMOUNT"
+	mount | grep -q $LOCALMOUNT || sshfs "$REMOTELOGIN:$REMOTEMOUNT" "$LOCALMOUNT"
+	;;
+
+"-u"|"--umount")
+	mount | grep -q $LOCALMOUNT && fusermount -u "$LOCALMOUNT"
+	;;
+	
+"-s"|"--sync")
+	mount | grep -q $LOCALMOUNT && unison-gtk "$LOCALBACKUP" "$LOCALMOUNT"
+	;;
+	
+"-d"|"--date")
+	echo "Setting up remote date/time..."
+# 	wget -O- -o/dev/null $HORACERTAURL \
+# 	| sed -rn 's/.*initial_date.*value="(.*)".*/\1/p' \
+# 	| while read YY MM DD hh mm ss; do
+# 		
+# 		ssh -Y "$REMOTELOGIN" date $MM$DD$hh$mm$YY.$ss
+# 	done
+
+	if ssh "$REMOTELOGIN" test -u /bin/date; then
+		DATE=$(date +%m%d%H%M%Y.%S)
+		ssh "$REMOTELOGIN" date "$DATE"
+	else
+		echo "Regular users cannot set date on remote system, try setting sticky bit on /bin/date."
+		echo "chmod +s /bin/date"
+	fi
+	;;
+	
+"-gdb")
+	printargs "$@"
+# 	ssh -Y "$REMOTELOGIN" gdb "$@"
+	;;
+	
+"-h"|"--help")
+	echo "BoneLogin: Helper script for working with TI's BeagleBone Black."
+	echo ""
+	echo "Usage:"
+	echo ""
+	echo "  BoneLogin          Start ssh session. SSH host keys are automatically updated if necessary."
+	echo "                     SSH target...: $REMOTELOGIN"
+	echo ""
+	echo "  BoneLogin -m       Mount home folder."
+	echo "  BoneLogin -u       Unmount home folder."
+	echo "                     Remote path..: $REMOTEMOUNT"
+	echo "                     Local path...: $LOCALMOUNT"
+	echo ""
+	echo "  BoneLogin -s       Use unison to backup home folder."
+	echo "                     Backup path..: $LOCALBACKUP"
+	echo ""
+	echo "  BoneLogin -d       Set remote date/time to match local."
+	echo "                     Useful if the target has no network."
+	echo "                     UNSAFE: Requires sticky bit set on /bin/date."
+	echo ""
+	;;
+	
+*)
+	ssh $REMOTELOGIN "$@"
+	;;
+	
+esac

@@ -2,6 +2,7 @@
 # Lucas Vinicius Hartmann, 2015.
 REMOTEDIR=/home/ubuntu/bbb-pru-project0
 ARCH=$(shell uname -m)
+REMOTE=tools/BoneLogin
 
 .SILENT:
 
@@ -9,7 +10,7 @@ all:
 ifeq ($(ARCH),armv7l)
 	${MAKE} -C linux all
 else
-	BoneLogin make -s -C "$(REMOTEDIR)/linux" all
+	$(REMOTE) make -s -C "$(REMOTEDIR)/linux" all
 endif
 	${MAKE} -C pru0  all
 	${MAKE} -C pru1  all
@@ -29,7 +30,7 @@ ifeq ($(ARCH),armv7l)
 	echo 'bone_pwm_P9_22' | sudo tee /sys/devices/bone_capemgr.9/slots > /dev/null
 	echo 'am33xx_pwm'     | sudo tee /sys/devices/bone_capemgr.9/slots > /dev/null
 else
-	BoneLogin make -s -C "$(REMOTEDIR)" loadslots
+	$(REMOTE) make -s -C "$(REMOTEDIR)" loadslots
 endif
 
 unloadslots:
@@ -39,6 +40,6 @@ run:
 ifeq ($(ARCH),armv7l)
 	cd build && sudo ./host
 else
-	BoneLogin make -s -C "$(REMOTEDIR)" loadslots
+	$(REMOTE) make -s -C "$(REMOTEDIR)" loadslots
 endif
 

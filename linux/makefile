@@ -5,6 +5,8 @@
 SRCDIR=.
 BUILD=../build/obj-linux
 INCLUDES=-I../include -I$(SRCDIR)
+REMOTEDIR=/home/ubuntu/bbb-pru-project0
+REMOTE=../tools/BoneLogin
 
 # Project Files
 TARGET=host
@@ -21,10 +23,16 @@ LD=ld
 LDFLAGS=
 LDLIBS=
 
-# Trigger remomte build is "make all" is run on host
+# Trigger remote build is "make all" is run on host
+ifeq ($(shell uname -m),armv7l)
 all: pre $(TARGETFILE)
 	echo "  Make $(TARGET) has completed."
 	echo ""
+else
+all: 
+	echo "Starting remote builder..."
+	$(REMOTE) make -s -C $(REMOTEDIR) all
+endif
 
 pre:
 	echo "Making $(TARGET)..."
