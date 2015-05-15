@@ -116,7 +116,7 @@ bool pruIsHalted(prumem_t *pru, int n, uint32_t timeout_ms) {
 }
 
 void pruHalt(prumem_t *pru, int n) {
-	TAG("isHalted");
+	TAG("pruHalt");
 	pru_control_frame_t *ctl;
 	switch(n) {
 	case 0:

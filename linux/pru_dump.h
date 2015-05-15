@@ -1,8 +1,10 @@
+#include <iostream>
+
 #define pru_dump(out,Y,n)  { pru_indent(out,n); (out) << #Y " = "; pru_dump_val(out,Y,n); }
 #define pru_dumpX(out,Y,n) { pru_indent(out,n); (out) << #Y " = "; pru_dump_val(out,X.Y,n); }
 
-inline void pru_indent(ostream &out, uint32_t n) { while (n--) out<<"  "; }
-inline void pru_dump_val(ostream &out, uint32_t Y, uint32_t n) { out << hex << (Y) <<endl; }
+inline void pru_indent(std::ostream &out, uint32_t n) { while (n--) out<<"  "; }
+inline void pru_dump_val(std::ostream &out, uint32_t Y, uint32_t n) { out << std::hex << (Y) <<std::endl; }
 
 // -BF-int8_t-
 // -BF-int16_t-
@@ -43,8 +45,8 @@ inline void pru_dump_val(ostream &out, uint32_t Y, uint32_t n) { out << hex << (
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_REVID_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_REVID_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.REV_MINOR, n+1);
 	pru_dumpX(out, bit.REV_CUSTOM, n+1);
 	pru_dumpX(out, bit.REV_MAJOR, n+1);
@@ -53,7 +55,7 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_REVID_reg_t &X, uint3
 	pru_dumpX(out, bit.REV_SCHEME, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CR_reg_t-
@@ -62,12 +64,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_REVID_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_MODE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_GER_reg_t-
@@ -76,12 +78,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CR_reg_t &X, uint32_t
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_GER_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_GER_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.ENABLE_HINT_ANY, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_GNLR_reg_t-
@@ -91,13 +93,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_GER_reg_t &X, uint32_
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_GNLR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_GNLR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.GLB_NEST_LEVEL, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_SISR_reg_t-
@@ -106,12 +108,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_GNLR_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_SISR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_SISR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.STATUS_SET_INDEX, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_SICR_reg_t-
@@ -120,12 +122,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SISR_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_SICR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_SICR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.STATUS_CLR_INDEX, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_EISR_reg_t-
@@ -134,12 +136,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SICR_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_EISR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_EISR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.ENABLE_SET_INDEX, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_EICR_reg_t-
@@ -148,12 +150,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_EISR_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_EICR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_EICR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.ENABLE_CLR_INDEX, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIEISR_reg_t-
@@ -162,12 +164,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_EICR_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIEISR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIEISR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.HINT_ENABLE_SET_INDEX, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIDISR_reg_t-
@@ -176,12 +178,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIEISR_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIDISR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIDISR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.HINT_ENABLE_CLR_INDEX, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_GPIR_reg_t-
@@ -191,13 +193,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIDISR_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_GPIR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_GPIR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.GLB_PRI_INTR, n+1);
 	pru_dumpX(out, bit.GLB_NONE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR0_reg_t-
@@ -209,15 +211,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_GPIR_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_0, n+1);
 	pru_dumpX(out, bit.CH_MAP_1, n+1);
 	pru_dumpX(out, bit.CH_MAP_2, n+1);
 	pru_dumpX(out, bit.CH_MAP_3, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR1_reg_t-
@@ -229,15 +231,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR0_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_4, n+1);
 	pru_dumpX(out, bit.CH_MAP_5, n+1);
 	pru_dumpX(out, bit.CH_MAP_6, n+1);
 	pru_dumpX(out, bit.CH_MAP_7, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR2_reg_t-
@@ -249,15 +251,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR1_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR2_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR2_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_8, n+1);
 	pru_dumpX(out, bit.CH_MAP_9, n+1);
 	pru_dumpX(out, bit.CH_MAP_10, n+1);
 	pru_dumpX(out, bit.CH_MAP_11, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR3_reg_t-
@@ -269,15 +271,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR2_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR3_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR3_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_12, n+1);
 	pru_dumpX(out, bit.CH_MAP_13, n+1);
 	pru_dumpX(out, bit.CH_MAP_14, n+1);
 	pru_dumpX(out, bit.CH_MAP_15, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR4_reg_t-
@@ -289,15 +291,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR3_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR4_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR4_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_16, n+1);
 	pru_dumpX(out, bit.CH_MAP_17, n+1);
 	pru_dumpX(out, bit.CH_MAP_18, n+1);
 	pru_dumpX(out, bit.CH_MAP_19, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR5_reg_t-
@@ -309,15 +311,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR4_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR5_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR5_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_20, n+1);
 	pru_dumpX(out, bit.CH_MAP_21, n+1);
 	pru_dumpX(out, bit.CH_MAP_22, n+1);
 	pru_dumpX(out, bit.CH_MAP_23, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR6_reg_t-
@@ -329,15 +331,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR5_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR6_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR6_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_24, n+1);
 	pru_dumpX(out, bit.CH_MAP_25, n+1);
 	pru_dumpX(out, bit.CH_MAP_26, n+1);
 	pru_dumpX(out, bit.CH_MAP_27, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR7_reg_t-
@@ -349,15 +351,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR6_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR7_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR7_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_28, n+1);
 	pru_dumpX(out, bit.CH_MAP_29, n+1);
 	pru_dumpX(out, bit.CH_MAP_30, n+1);
 	pru_dumpX(out, bit.CH_MAP_31, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR8_reg_t-
@@ -369,15 +371,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR7_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR8_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR8_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_32, n+1);
 	pru_dumpX(out, bit.CH_MAP_33, n+1);
 	pru_dumpX(out, bit.CH_MAP_34, n+1);
 	pru_dumpX(out, bit.CH_MAP_35, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR9_reg_t-
@@ -389,15 +391,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR8_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR9_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR9_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_36, n+1);
 	pru_dumpX(out, bit.CH_MAP_37, n+1);
 	pru_dumpX(out, bit.CH_MAP_38, n+1);
 	pru_dumpX(out, bit.CH_MAP_39, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR10_reg_t-
@@ -409,15 +411,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR9_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR10_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR10_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_40, n+1);
 	pru_dumpX(out, bit.CH_MAP_41, n+1);
 	pru_dumpX(out, bit.CH_MAP_42, n+1);
 	pru_dumpX(out, bit.CH_MAP_43, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR11_reg_t-
@@ -429,15 +431,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR10_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR11_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR11_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_44, n+1);
 	pru_dumpX(out, bit.CH_MAP_45, n+1);
 	pru_dumpX(out, bit.CH_MAP_46, n+1);
 	pru_dumpX(out, bit.CH_MAP_47, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR12_reg_t-
@@ -449,15 +451,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR11_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR12_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR12_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_48, n+1);
 	pru_dumpX(out, bit.CH_MAP_49, n+1);
 	pru_dumpX(out, bit.CH_MAP_50, n+1);
 	pru_dumpX(out, bit.CH_MAP_51, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR13_reg_t-
@@ -469,15 +471,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR12_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR13_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR13_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_52, n+1);
 	pru_dumpX(out, bit.CH_MAP_53, n+1);
 	pru_dumpX(out, bit.CH_MAP_54, n+1);
 	pru_dumpX(out, bit.CH_MAP_55, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR14_reg_t-
@@ -489,15 +491,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR13_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR14_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR14_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_56, n+1);
 	pru_dumpX(out, bit.CH_MAP_57, n+1);
 	pru_dumpX(out, bit.CH_MAP_58, n+1);
 	pru_dumpX(out, bit.CH_MAP_59, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_CMR15_reg_t-
@@ -509,15 +511,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR14_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR15_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_CMR15_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.CH_MAP_60, n+1);
 	pru_dumpX(out, bit.CH_MAP_61, n+1);
 	pru_dumpX(out, bit.CH_MAP_62, n+1);
 	pru_dumpX(out, bit.CH_MAP_63, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HMR0_reg_t-
@@ -529,15 +531,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_CMR15_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HMR0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HMR0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.HINT_MAP_0, n+1);
 	pru_dumpX(out, bit.HINT_MAP_1, n+1);
 	pru_dumpX(out, bit.HINT_MAP_2, n+1);
 	pru_dumpX(out, bit.HINT_MAP_3, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HMR1_reg_t-
@@ -549,15 +551,15 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HMR0_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HMR1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HMR1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.HINT_MAP_4, n+1);
 	pru_dumpX(out, bit.HINT_MAP_5, n+1);
 	pru_dumpX(out, bit.HINT_MAP_6, n+1);
 	pru_dumpX(out, bit.HINT_MAP_7, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HMR2_reg_t-
@@ -567,13 +569,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HMR1_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HMR2_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HMR2_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.HINT_MAP_8, n+1);
 	pru_dumpX(out, bit.HINT_MAP_9, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR0_reg_t-
@@ -583,13 +585,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HMR2_reg_t &X, uint32
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_0, n+1);
 	pru_dumpX(out, bit.NONE_HINT_0, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR1_reg_t-
@@ -599,13 +601,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR0_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_1, n+1);
 	pru_dumpX(out, bit.NONE_HINT_1, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR2_reg_t-
@@ -615,13 +617,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR1_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR2_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR2_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_2, n+1);
 	pru_dumpX(out, bit.NONE_HINT_2, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR3_reg_t-
@@ -631,13 +633,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR2_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR3_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR3_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_3, n+1);
 	pru_dumpX(out, bit.NONE_HINT_3, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR4_reg_t-
@@ -647,13 +649,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR3_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR4_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR4_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_4, n+1);
 	pru_dumpX(out, bit.NONE_HINT_4, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR5_reg_t-
@@ -663,13 +665,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR4_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR5_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR5_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_5, n+1);
 	pru_dumpX(out, bit.NONE_HINT_5, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR6_reg_t-
@@ -679,13 +681,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR5_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR6_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR6_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_6, n+1);
 	pru_dumpX(out, bit.NONE_HINT_6, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR7_reg_t-
@@ -695,13 +697,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR6_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR7_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR7_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_7, n+1);
 	pru_dumpX(out, bit.NONE_HINT_7, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR8_reg_t-
@@ -711,13 +713,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR7_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR8_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR8_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_8, n+1);
 	pru_dumpX(out, bit.NONE_HINT_8, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIPIR9_reg_t-
@@ -727,13 +729,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR8_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR9_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIPIR9_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRI_HINT_9, n+1);
 	pru_dumpX(out, bit.NONE_HINT_9, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_SIPR0_reg_t-
@@ -773,8 +775,8 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIPIR9_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_SIPR0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_SIPR0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.POLARITY_0, n+1);
 	pru_dumpX(out, bit.POLARITY_1, n+1);
 	pru_dumpX(out, bit.POLARITY_2, n+1);
@@ -809,7 +811,7 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SIPR0_reg_t &X, uint3
 	pru_dumpX(out, bit.POLARITY_31, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_SIPR1_reg_t-
@@ -849,8 +851,8 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SIPR0_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_SIPR1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_SIPR1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.POLARITY_32, n+1);
 	pru_dumpX(out, bit.POLARITY_33, n+1);
 	pru_dumpX(out, bit.POLARITY_34, n+1);
@@ -885,7 +887,7 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SIPR1_reg_t &X, uint3
 	pru_dumpX(out, bit.POLARITY_63, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_SITR0_reg_t-
@@ -925,8 +927,8 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SIPR1_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_SITR0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_SITR0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.TYPE_0, n+1);
 	pru_dumpX(out, bit.TYPE_1, n+1);
 	pru_dumpX(out, bit.TYPE_2, n+1);
@@ -961,7 +963,7 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SITR0_reg_t &X, uint3
 	pru_dumpX(out, bit.TYPE_31, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_SITR1_reg_t-
@@ -1001,8 +1003,8 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SITR0_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_SITR1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_SITR1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.TYPE_32, n+1);
 	pru_dumpX(out, bit.TYPE_33, n+1);
 	pru_dumpX(out, bit.TYPE_34, n+1);
@@ -1037,7 +1039,7 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SITR1_reg_t &X, uint3
 	pru_dumpX(out, bit.TYPE_63, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR0_reg_t-
@@ -1047,13 +1049,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_SITR1_reg_t &X, uint3
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_0, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR1_reg_t-
@@ -1063,13 +1065,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR0_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_1, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR2_reg_t-
@@ -1079,13 +1081,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR1_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR2_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR2_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_2, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR3_reg_t-
@@ -1095,13 +1097,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR2_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR3_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR3_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_3, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR4_reg_t-
@@ -1111,13 +1113,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR3_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR4_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR4_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_4, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR5_reg_t-
@@ -1127,13 +1129,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR4_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR5_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR5_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_5, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR6_reg_t-
@@ -1143,13 +1145,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR5_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR6_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR6_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_6, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR7_reg_t-
@@ -1159,13 +1161,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR6_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR7_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR7_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_7, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR8_reg_t-
@@ -1175,13 +1177,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR7_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR8_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR8_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_8, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HINLR9_reg_t-
@@ -1191,13 +1193,13 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR8_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR9_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HINLR9_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.NEST_HINT_9, n+1);
 	pru_dumpX(out, bit.AUTO_OVERRIDE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_HIER_reg_t-
@@ -1206,12 +1208,12 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HINLR9_reg_t &X, uint
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_HIER_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_HIER_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.ENABLE_HINT, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_icss_intc_regs_t-
@@ -1279,8 +1281,8 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_HIER_reg_t &X, uint32
 // -BF-HINLR9-
 // -BF-HIER-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_icss_intc_regs_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_icss_intc_regs_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, REVID, n+1);
 	pru_dumpX(out, CR, n+1);
 	pru_dumpX(out, GER, n+1);
@@ -1345,7 +1347,7 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_regs_t &X, uint32_t n
 	pru_dumpX(out, HINLR9, n+1);
 	pru_dumpX(out, HIER, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_CONTROL_reg_t-
@@ -1360,8 +1362,8 @@ inline void pru_dump_val(ostream &out, const pru_icss_intc_regs_t &X, uint32_t n
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_CONTROL_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_CONTROL_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.SOFT_RST_N, n+1);
 	pru_dumpX(out, bit.ENABLE, n+1);
 	pru_dumpX(out, bit.SLEEPING, n+1);
@@ -1371,7 +1373,7 @@ inline void pru_dump_val(ostream &out, const pru_CONTROL_reg_t &X, uint32_t n) {
 	pru_dumpX(out, bit.PCOUNTER_RST_VAL, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_STATUS_reg_t-
@@ -1380,12 +1382,12 @@ inline void pru_dump_val(ostream &out, const pru_CONTROL_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_STATUS_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_STATUS_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PCOUNTER, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_CTBIR0_reg_t-
@@ -1395,13 +1397,13 @@ inline void pru_dump_val(ostream &out, const pru_STATUS_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_CTBIR0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_CTBIR0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.C24_BLK_INDEX, n+1);
 	pru_dumpX(out, bit.C25_BLK_INDEX, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_CTBIR1_reg_t-
@@ -1411,13 +1413,13 @@ inline void pru_dump_val(ostream &out, const pru_CTBIR0_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_CTBIR1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_CTBIR1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.C26_BLK_INDEX, n+1);
 	pru_dumpX(out, bit.C27_BLK_INDEX, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_CTPPR0_reg_t-
@@ -1427,13 +1429,13 @@ inline void pru_dump_val(ostream &out, const pru_CTBIR1_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_CTPPR0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_CTPPR0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.C28_POINTER, n+1);
 	pru_dumpX(out, bit.C29_POINTER, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_CTPPR1_reg_t-
@@ -1443,13 +1445,13 @@ inline void pru_dump_val(ostream &out, const pru_CTPPR0_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_CTPPR1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_CTPPR1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.C30_POINTER, n+1);
 	pru_dumpX(out, bit.C31_POINTER, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_control_frame_t-
@@ -1463,8 +1465,8 @@ inline void pru_dump_val(ostream &out, const pru_CTPPR1_reg_t &X, uint32_t n) {
 // -BF-CTPPR0-
 // -BF-CTPPR1-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_control_frame_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_control_frame_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, CONTROL, n+1);
 	pru_dumpX(out, STATUS, n+1);
 	pru_dumpX(out, WAKEUP_EN, n+1);
@@ -1475,15 +1477,15 @@ inline void pru_dump_val(ostream &out, const pru_control_frame_t &X, uint32_t n)
 	pru_dumpX(out, CTPPR0, n+1);
 	pru_dumpX(out, CTPPR1, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_debug_frame_t-
 // -VU-GPREG-
 // -VU-CTREG-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_debug_frame_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_debug_frame_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, GPREG[0], n+1);
 	pru_dumpX(out, GPREG[1], n+1);
 	pru_dumpX(out, GPREG[2], n+1);
@@ -1549,7 +1551,7 @@ inline void pru_dump_val(ostream &out, const pru_debug_frame_t &X, uint32_t n) {
 	pru_dumpX(out, CTREG[30], n+1);
 	pru_dumpX(out, CTREG[31], n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_SYSCFG_reg_t-
@@ -1561,15 +1563,15 @@ inline void pru_dump_val(ostream &out, const pru_debug_frame_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_SYSCFG_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_SYSCFG_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.IDLE_MODE, n+1);
 	pru_dumpX(out, bit.STANDBY_MODE, n+1);
 	pru_dumpX(out, bit.STANDBY_INIT, n+1);
 	pru_dumpX(out, bit.SUB_MWAIT, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_GPCFG0_reg_t-
@@ -1586,8 +1588,8 @@ inline void pru_dump_val(ostream &out, const pru_SYSCFG_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_GPCFG0_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_GPCFG0_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRU0_GPI_MODE, n+1);
 	pru_dumpX(out, bit.PRU0_GPI_CLK_MODE, n+1);
 	pru_dumpX(out, bit.PRU0_GPI_DIV0, n+1);
@@ -1599,7 +1601,7 @@ inline void pru_dump_val(ostream &out, const pru_GPCFG0_reg_t &X, uint32_t n) {
 	pru_dumpX(out, bit.PRU0_GPO_SH_SEL, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_GPCFG1_reg_t-
@@ -1616,8 +1618,8 @@ inline void pru_dump_val(ostream &out, const pru_GPCFG0_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_GPCFG1_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_GPCFG1_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRU1_GPI_MODE, n+1);
 	pru_dumpX(out, bit.PRU1_GPI_CLK_MODE, n+1);
 	pru_dumpX(out, bit.PRU1_GPI_DIV0, n+1);
@@ -1629,7 +1631,7 @@ inline void pru_dump_val(ostream &out, const pru_GPCFG1_reg_t &X, uint32_t n) {
 	pru_dumpX(out, bit.PRU1_GPO_SH_SEL, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_CGR_reg_t-
@@ -1655,8 +1657,8 @@ inline void pru_dump_val(ostream &out, const pru_GPCFG1_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_CGR_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_CGR_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRU0_CLK_STOP_REQ, n+1);
 	pru_dumpX(out, bit.PRU0_CLK_STOP_ACK, n+1);
 	pru_dumpX(out, bit.PRU0_CLK_EN, n+1);
@@ -1677,7 +1679,7 @@ inline void pru_dump_val(ostream &out, const pru_CGR_reg_t &X, uint32_t n) {
 	pru_dumpX(out, bit.IEP_CLK_EN, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_ISRP_reg_t-
@@ -1690,8 +1692,8 @@ inline void pru_dump_val(ostream &out, const pru_CGR_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_ISRP_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_ISRP_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRU0_IMEM_PE_RAW, n+1);
 	pru_dumpX(out, bit.PRU0_DMEM_PE_RAW, n+1);
 	pru_dumpX(out, bit.PRU1_IMEM_PE_RAW, n+1);
@@ -1699,7 +1701,7 @@ inline void pru_dump_val(ostream &out, const pru_ISRP_reg_t &X, uint32_t n) {
 	pru_dumpX(out, bit.RAM_PE_RAW, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_ISP_reg_t-
@@ -1712,8 +1714,8 @@ inline void pru_dump_val(ostream &out, const pru_ISRP_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_ISP_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_ISP_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRU0_IMEM_PE, n+1);
 	pru_dumpX(out, bit.PRU0_DMEM_PE, n+1);
 	pru_dumpX(out, bit.PRU1_IMEM_PE, n+1);
@@ -1721,7 +1723,7 @@ inline void pru_dump_val(ostream &out, const pru_ISP_reg_t &X, uint32_t n) {
 	pru_dumpX(out, bit.RAM_PE, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_IESP_reg_t-
@@ -1734,8 +1736,8 @@ inline void pru_dump_val(ostream &out, const pru_ISP_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_IESP_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_IESP_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRU0_IMEM_PE_SET, n+1);
 	pru_dumpX(out, bit.PRU0_DMEM_PE_SET, n+1);
 	pru_dumpX(out, bit.PRU1_IMEM_PE_SET, n+1);
@@ -1743,7 +1745,7 @@ inline void pru_dump_val(ostream &out, const pru_IESP_reg_t &X, uint32_t n) {
 	pru_dumpX(out, bit.RAM_PE_SET, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_IECP_reg_t-
@@ -1755,15 +1757,15 @@ inline void pru_dump_val(ostream &out, const pru_IESP_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_IECP_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_IECP_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRU0_IMEM_PE_CLR, n+1);
 	pru_dumpX(out, bit.PRU0_DMEM_PE_CLR, n+1);
 	pru_dumpX(out, bit.PRU1_IMEM_PE_CLR, n+1);
 	pru_dumpX(out, bit.PRU1_DMEM_PE_CLR, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_PMAO_reg_t-
@@ -1773,13 +1775,13 @@ inline void pru_dump_val(ostream &out, const pru_IECP_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_PMAO_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_PMAO_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PMAO_PRU0, n+1);
 	pru_dumpX(out, bit.PMAO_PRU1, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_MII_RT_reg_t-
@@ -1788,12 +1790,12 @@ inline void pru_dump_val(ostream &out, const pru_PMAO_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_MII_RT_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_MII_RT_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.MII_RT_EVENT_EN, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_IEPCLK_reg_t-
@@ -1802,12 +1804,12 @@ inline void pru_dump_val(ostream &out, const pru_MII_RT_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_IEPCLK_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_IEPCLK_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.OCP_EN, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_SPP_reg_t-
@@ -1817,13 +1819,13 @@ inline void pru_dump_val(ostream &out, const pru_IEPCLK_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_SPP_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_SPP_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PRU1_PAD_HP_EN, n+1);
 	pru_dumpX(out, bit.XFR_SHIFT_EN, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_PIN_MX_reg_t-
@@ -1832,12 +1834,12 @@ inline void pru_dump_val(ostream &out, const pru_SPP_reg_t &X, uint32_t n) {
 // -ES-bit-
 // -BF-all-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_PIN_MX_reg_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_PIN_MX_reg_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, bit.PIN_MUX_SEL, n+1);
 	pru_dumpX(out, all, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-pru_config_frame_t-
@@ -1859,8 +1861,8 @@ inline void pru_dump_val(ostream &out, const pru_PIN_MX_reg_t &X, uint32_t n) {
 // -BF-_rsvd3-
 // -BF-PIN_MX-
 // -ES--
-inline void pru_dump_val(ostream &out, const pru_config_frame_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const pru_config_frame_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, REVID, n+1);
 	pru_dumpX(out, SYSCFG, n+1);
 	pru_dumpX(out, GPCFG0, n+1);
@@ -1876,7 +1878,7 @@ inline void pru_dump_val(ostream &out, const pru_config_frame_t &X, uint32_t n) 
 	pru_dumpX(out, SPP, n+1);
 	pru_dumpX(out, PIN_MX, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 
 // -SS-prumem_t-
@@ -1897,8 +1899,8 @@ inline void pru_dump_val(ostream &out, const pru_config_frame_t &X, uint32_t n) 
 // -SS--
 // -ES-IRAM1-
 // -ES--
-inline void pru_dump_val(ostream &out, const prumem_t &X, uint32_t n) {
-	out << "{" << endl;
+inline void pru_dump_val(std::ostream &out, const prumem_t &X, uint32_t n) {
+	out << "{" << std::endl;
 	pru_dumpX(out, INTC, n+1);
 	pru_dumpX(out, PRU0CTL, n+1);
 	pru_dumpX(out, PRU0DBG, n+1);
@@ -1906,6 +1908,6 @@ inline void pru_dump_val(ostream &out, const prumem_t &X, uint32_t n) {
 	pru_dumpX(out, PRU1DBG, n+1);
 	pru_dumpX(out, CFG, n+1);
 	pru_indent(out, n);
-	out << "}" << endl;
+	out << "}" << std::endl;
 }
 

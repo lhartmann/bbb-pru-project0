@@ -25,10 +25,16 @@ dt_find() {
 }
 
 dt_load() {
-	local PN=$(sed -rn 's/.*part-number[ \t]*=[ \t]*"(.+)";.*/\1/p' < "$1")
-	local VER=$(sed -rn 's/.*version[ \t]*=[ \t]*"(.+)";.*/\1/p' < "$1")
+	echo "$1" | grep -qE '.dts$'
+	if [ $? -eq 0 ]; then
+		local PN=$(sed -rn 's/.*part-number[ \t]*=[ \t]*"(.+)";.*/\1/p' < "$1")
+		local VER=$(sed -rn 's/.*version[ \t]*=[ \t]*"(.+)";.*/\1/p' < "$1")
 
-	dtc -@ -I dts -O dtb "$1" > "$FWDIR/$PN-$VER.dtbo"
+		dtc -@ -I dts -O dtb "$1" > "$FWDIR/$PN-$VER.dtbo"
+	else
+		local PN="$(echo "$1" | sed -r 's_.*/__;s_-[0-9A-F]{4}\.dtbo$__')"
+	fi
+
 	echo "$PN" > $CAPEMGR/slots \
 	&& echo "Loaded $PN onto slot $(dt_find "part-number=$PN")." \
 	|| echo "Failed to load $PN."
